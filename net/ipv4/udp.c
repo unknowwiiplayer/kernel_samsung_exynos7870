@@ -113,9 +113,12 @@
 #include <trace/events/skb.h>
 #include <net/busy_poll.h>
 #include "udp_impl.h"
+<<<<<<< HEAD
+=======
 /* START_OF_KNOX_NPA */
 #include <net/ncm.h>
 /* END_OF_KNOX_NPA */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 struct udp_table udp_table __read_mostly;
 EXPORT_SYMBOL(udp_table);
@@ -806,7 +809,11 @@ static int udp_send_skb(struct sk_buff *skb, struct flowi4 *fl4)
 	if (is_udplite)  				 /*     UDP-Lite      */
 		csum = udplite_csum(skb);
 
+<<<<<<< HEAD
+	else if (sk->sk_no_check_tx) {   /* UDP csum disabled */
+=======
 	else if (sk->sk_no_check_tx && !skb_is_gso(skb)) {   /* UDP csum off */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 		skb->ip_summed = CHECKSUM_NONE;
 		goto send;
@@ -1010,7 +1017,11 @@ int udp_sendmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
 				   RT_SCOPE_UNIVERSE, sk->sk_protocol,
 				   inet_sk_flowi_flags(sk),
 				   faddr, saddr, dport, inet->inet_sport,
+<<<<<<< HEAD
+				   sock_i_uid(sk));
+=======
 				   sk->sk_uid);
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 		security_sk_classify_flow(sk, flowi4_to_flowi(fl4));
 		rt = ip_route_output_flow(net, fl4, sk);
@@ -1769,15 +1780,20 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 	if (sk) {
 		struct dst_entry *dst = skb_dst(skb);
 		int ret;
+<<<<<<< HEAD
+=======
 		/* START_OF_KNOX_NPA */
 		struct nf_conn *ct = NULL;
 		enum ip_conntrack_info ctinfo;
 		struct nf_conntrack_tuple *tuple = NULL;
 		/* END_OF_KNOX_NPA */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 		if (unlikely(sk->sk_rx_dst != dst))
 			udp_sk_rx_dst_set(sk, dst);
 
+<<<<<<< HEAD
+=======
 		/* START_OF_KNOX_NPA */
 		/* function to handle open flows with incoming udp packets */
 		if (check_ncm_flag()) {
@@ -1805,6 +1821,7 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 		}
 		/* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 		ret = udp_queue_rcv_skb(sk, skb);
 		sock_put(sk);
 		/* a return value > 0 means to resubmit the input, but
@@ -1823,16 +1840,21 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 
 	if (sk != NULL) {
 		int ret;
+<<<<<<< HEAD
+=======
 		/* START_OF_KNOX_NPA */
 		struct nf_conn *ct = NULL;
 		enum ip_conntrack_info ctinfo;
 		struct nf_conntrack_tuple *tuple = NULL;
 		/* END_OF_KNOX_NPA */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 		if (udp_sk(sk)->convert_csum && uh->check && !IS_UDPLITE(sk))
 			skb_checksum_try_convert(skb, IPPROTO_UDP, uh->check,
 						 inet_compute_pseudo);
 
+<<<<<<< HEAD
+=======
 		/* START_OF_KNOX_NPA */
 		/* function to handle open flows with incoming udp packets */
 		if (check_ncm_flag()) {
@@ -1860,6 +1882,7 @@ int __udp4_lib_rcv(struct sk_buff *skb, struct udp_table *udptable,
 		}
 		/* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 		ret = udp_queue_rcv_skb(sk, skb);
 		sock_put(sk);
 

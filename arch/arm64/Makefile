@@ -63,6 +63,13 @@ endif
 
 KBUILD_DTBS	:= dtbs
 
+<<<<<<< HEAD
+ifeq ($(CONFIG_EXYNOS_DTBTOOL),y)
+KBUILD_DTBS	+= dtb.img
+endif
+
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 all:	$(KBUILD_IMAGE) $(KBUILD_DTBS)
 
 boot := arch/arm64/boot
@@ -79,6 +86,12 @@ zinstall install: vmlinux
 dtbs: scripts
 	$(Q)$(MAKE) $(build)=$(boot)/dts dtbs
 
+<<<<<<< HEAD
+dtb.img: prepare scripts dtbs
+	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
+
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 Image.gz-dtb: vmlinux scripts dtbs
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@
 
@@ -93,6 +106,10 @@ archclean:
 define archhelp
   echo  '* Image.gz      - Compressed kernel image (arch/$(ARCH)/boot/Image.gz)'
   echo  '  Image         - Uncompressed kernel image (arch/$(ARCH)/boot/Image)'
+<<<<<<< HEAD
+  echo  '  dtb.img       - Build device tree image (arch/$(ARCH)/boot/dtb.img)'
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
   echo  '* dtbs          - Build device tree blobs for enabled boards'
   echo  '  install       - Install uncompressed kernel'
   echo  '  zinstall      - Install compressed kernel'

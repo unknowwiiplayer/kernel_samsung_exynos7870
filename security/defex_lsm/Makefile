@@ -52,6 +52,11 @@ ifeq ($(CACHES_ENABLE), true)
     EXTRA_CFLAGS += -DDEFEX_CACHES_ENABLE
 endif
 
+<<<<<<< HEAD
+# Set Defex to Permissive
+EXTRA_CFLAGS += -DDEFEX_PERMISSIVE_SP
+EXTRA_CFLAGS += -DDEFEX_PERMISSIVE_PED
+=======
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
     obj-y += defex_debug.o
     EXTRA_CFLAGS += -DDEFEX_PERMISSIVE_SP
@@ -65,3 +70,4 @@ ifneq ($(TARGET_BUILD_VARIANT), eng)
     EXTRA_CFLAGS += -DDEFEX_PERMISSIVE_PED
 endif
 endif
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc

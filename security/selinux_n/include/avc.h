@@ -22,7 +22,11 @@
 #ifdef CONFIG_SECURITY_SELINUX_DEVELOP
 extern int selinux_enforcing;
 #else
+<<<<<<< HEAD
+#define selinux_enforcing CONFIG_SECURITY_SELINUX_ENFORCING
+=======
 #define selinux_enforcing 1
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 #endif
 
 /*

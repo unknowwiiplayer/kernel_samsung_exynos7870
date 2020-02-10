@@ -722,7 +722,12 @@ static int sens_destroy(void *key, void *datum, void *p)
 	kfree(key);
 	if (datum) {
 		levdatum = datum;
+<<<<<<< HEAD
+		if (levdatum->level)
+			ebitmap_destroy(&levdatum->level->cat);
+=======
 		ebitmap_destroy(&levdatum->level->cat);
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 		kfree(levdatum->level);
 	}
 	kfree(datum);
@@ -1501,9 +1506,15 @@ static int type_read(struct policydb *p, struct hashtab *h, void *fp)
 	return 0;
 bad:
 // [ SEC_SELINUX_PORTING_COMMON
+<<<<<<< HEAD
+#ifndef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+	panic("SELinux:Failed to type read");
+#endif /*CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE*/
+=======
 #ifndef CONFIG_ALWAYS_ENFORCE
 	panic("SELinux:Failed to type read");
 #endif /*CONFIG_ALWAYS_ENFORCE*/
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 // ] SEC_SELINUX_PORTING_COMMON
 	type_destroy(key, typdatum, NULL);
 	return rc;
@@ -2514,9 +2525,15 @@ out:
 	return rc;
 bad:
 // [ SEC_SELINUX_PORTING_COMMON
+<<<<<<< HEAD
+#ifndef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+	panic("SELinux:Failed to load policy");
+#endif /*CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE*/
+=======
 #ifndef CONFIG_ALWAYS_ENFORCE
 	panic("SELinux:Failed to load policy");
 #endif /*CONFIG_ALWAYS_ENFORCE*/
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 // ] SEC_SELINUX_PORTING_COMMON
 	policydb_destroy(p);
 	goto out;

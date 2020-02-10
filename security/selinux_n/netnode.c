@@ -305,7 +305,11 @@ static __init int sel_netnode_init(void)
 	int iter;
 	
 // [ SEC_SELINUX_PORTING_COMMON
+<<<<<<< HEAD
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+=======
 #ifdef CONFIG_ALWAYS_ENFORCE
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 	selinux_enabled = 1;
 #endif
 // ] SEC_SELINUX_PORTING_COMMON

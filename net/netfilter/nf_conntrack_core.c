@@ -53,10 +53,13 @@
 #include <net/netfilter/nf_nat_core.h>
 #include <net/netfilter/nf_nat_helper.h>
 
+<<<<<<< HEAD
+=======
 /* START_OF_KNOX_NPA */
 #include <net/ncm.h>
 /* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 #define NF_CONNTRACK_VERSION	"0.5.0"
 
 int (*nfnetlink_parse_nat_setup_hook)(struct nf_conn *ct,
@@ -252,6 +255,8 @@ static void nf_ct_add_to_dying_list(struct nf_conn *ct)
 {
 	struct ct_pcpu *pcpu;
 
+<<<<<<< HEAD
+=======
 	/* START_OF_KNOX_NPA */
 	/* send dying conntrack entry to collect data */
 	if ( (check_ncm_flag()) && (ct != NULL) && (atomic_read(&ct->startFlow)) ) {
@@ -259,6 +264,7 @@ static void nf_ct_add_to_dying_list(struct nf_conn *ct)
 	}
 	/* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 	/* add this conntrack to the (per cpu) dying list */
 	ct->cpu = smp_processor_id();
 	pcpu = per_cpu_ptr(nf_ct_net(ct)->ct.pcpu_lists, ct->cpu);
@@ -805,9 +811,12 @@ __nf_conntrack_alloc(struct net *net, u16 zone,
 		     gfp_t gfp, u32 hash)
 {
 	struct nf_conn *ct;
+<<<<<<< HEAD
+=======
 	/* START_OF_KNOX_NPA */
 	struct timespec open_timespec;
 	/* END_OF_KNOX_NPA */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 	if (unlikely(!nf_conntrack_hash_rnd)) {
 		init_nf_conntrack_hash_rnd();
@@ -836,6 +845,8 @@ __nf_conntrack_alloc(struct net *net, u16 zone,
 		atomic_dec(&net->ct.count);
 		return ERR_PTR(-ENOMEM);
 	}
+<<<<<<< HEAD
+=======
 	/* START_OF_KNOX_NPA */
 	/* initialize the conntrack structure members when memory is allocated */
 	if (ct != NULL) {
@@ -854,6 +865,7 @@ __nf_conntrack_alloc(struct net *net, u16 zone,
 		atomic_set(&ct->startFlow, 0);
 	}
 	/* END_OF_KNOX_NPA */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 	
 	/*
 	 * Let ct->tuplehash[IP_CT_DIR_ORIGINAL].hnnode.next

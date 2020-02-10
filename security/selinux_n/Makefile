@@ -12,11 +12,14 @@ endif
 endif
 
 ifeq ($(TARGET_BUILD_VARIANT), user)
+<<<<<<< HEAD
+=======
 ifeq ($(SEC_BUILD_OPTION_PRODUCT_SHIP), true)
 ifeq ($(SEC_BUILD_OPTION_SELINUX_ENFORCE),true)
 EXTRA_CFLAGS += -DCONFIG_ALWAYS_ENFORCE=true
 endif
 endif
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 endif
 # ] SEC_SELINUX_PORTING_COMMON
 

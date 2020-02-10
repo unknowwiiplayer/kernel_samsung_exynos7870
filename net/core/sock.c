@@ -142,12 +142,15 @@
 
 #include <net/busy_poll.h>
 
+<<<<<<< HEAD
+=======
 /* START_OF_KNOX_NPA */
 #include <linux/sched.h>
 #include <linux/pid.h>
 #include <net/ncm.h>
 /* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 static DEFINE_MUTEX(proto_list_mutex);
 static LIST_HEAD(proto_list);
 
@@ -651,6 +654,8 @@ out:
 	return ret;
 }
 
+<<<<<<< HEAD
+=======
 /* START_OF_KNOX_NPA */
 /** The function sets the domain name associated with the socket. **/
 static int sock_set_domain_name(struct sock *sk, char __user *optval,
@@ -740,6 +745,7 @@ out:
 
 /* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 static inline void sock_valbool_flag(struct sock *sk, int bit, int valbool)
 {
 	if (valbool)
@@ -788,6 +794,8 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
 	if (optname == SO_BINDTODEVICE)
 		return sock_setbindtodevice(sk, optval, optlen);
 
+<<<<<<< HEAD
+=======
 	/* START_OF_KNOX_NPA */
 	if (optname == SO_SET_DOMAIN_NAME)
 		return sock_set_domain_name(sk, optval, optlen);
@@ -797,6 +805,7 @@ int sock_setsockopt(struct socket *sock, int level, int optname,
 		return sock_set_dns_pid(sk, optval, optlen);
 	/* END_OF_KNOX_NPA */
 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 	if (optlen < sizeof(int))
 		return -EINVAL;
 
@@ -1488,6 +1497,11 @@ struct sock *sk_alloc(struct net *net, int family, gfp_t priority,
 {
 	struct sock *sk;
 
+<<<<<<< HEAD
+	sk = sk_prot_alloc(prot, priority | __GFP_ZERO, family);
+	if (sk) {
+		sk->sk_family = family;
+=======
 	/* START_OF_KNOX_NPA */
 	struct pid *pid_struct = NULL;
 	struct task_struct *task = NULL;
@@ -1545,6 +1559,7 @@ struct sock *sk_alloc(struct net *net, int family, gfp_t priority,
 			}
 		}
 		/* END_OF_KNOX_NPA */
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 		/*
 		 * See comment in struct sock definition to understand
 		 * why we need sk_prot_creator -acme

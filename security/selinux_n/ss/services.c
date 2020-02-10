@@ -774,15 +774,25 @@ out:
 	kfree(t);
 
 // [ SEC_SELINUX_PORTING_COMMON
+<<<<<<< HEAD
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+	return -EPERM;
+#else
+=======
 #ifdef CONFIG_ALWAYS_ENFORCE
 #if !defined(CONFIG_RKP_KDP)
 	selinux_enforcing = 1;
 #endif
 #endif
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 // ] SEC_SELINUX_PORTING_COMMON
 	if (!selinux_enforcing)
 		return 0;
 	return -EPERM;
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 }
 
 int security_validate_transition(u32 oldsid, u32 newsid, u32 tasksid,
@@ -1408,15 +1418,26 @@ out:
 	kfree(n);
 
 // [ SEC_SELINUX_PORTING_COMMON
+<<<<<<< HEAD
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+	return -EACCES;
+#else
+
+=======
 #ifdef CONFIG_ALWAYS_ENFORCE
 #if !defined(CONFIG_RKP_KDP)
 	selinux_enforcing = 1;
 #endif
 #endif
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 // ] SEC_SELINUX_PORTING_COMMON
 	if (!selinux_enforcing)
 		return 0;
 	return -EACCES;
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 }
 
 static void filename_compute_type(struct policydb *p, struct context *newcontext,
@@ -1706,9 +1727,15 @@ static inline int convert_context_handle_invalid_context(struct context *context
 	u32 len;
 
 // [ SEC_SELINUX_PORTING_COMMON
+<<<<<<< HEAD
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE
+	return -EINVAL;
+#else
+=======
 #ifdef CONFIG_ALWAYS_ENFORCE
 	selinux_enforcing = 1;
 #endif
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 // ] SEC_SELINUX_PORTING_COMMON
 	if (selinux_enforcing)
 		return -EINVAL;
@@ -1718,6 +1745,10 @@ static inline int convert_context_handle_invalid_context(struct context *context
 		kfree(s);
 	}
 	return 0;
+<<<<<<< HEAD
+#endif
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 }
 
 struct convert_context_args {

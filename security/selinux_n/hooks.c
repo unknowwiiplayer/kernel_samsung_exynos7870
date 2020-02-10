@@ -2943,15 +2943,26 @@ static int selinux_inode_permission(struct inode *inode, int mask)
 		int count = 5;
 
 		while(count-- > 0) {
+<<<<<<< HEAD
+			printk(KERN_ERR "SELinux : inode->i_security is not initialized. waiting...(%d/5)\n", 5-count);
+			udelay(500);
+			if(isec->initialized == 1) {
+				printk(KERN_ERR "SELinux : inode->i_security is INITIALIZED.\n");
+=======
 			printk(KERN_ERR "SELinux : inode->i_security is not initialized. waiting...(%d/5)\n", 5-count); 
 			udelay(500);
 			if(isec->initialized == 1) {
 				printk(KERN_ERR "SELinux : inode->i_security is INITIALIZED.\n"); 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 				break;
 			}
 		}
 		if(isec->initialized != 1) {
+<<<<<<< HEAD
+			printk(KERN_ERR "SELinux : inode->i_security is not initialized. not fixed.\n");
+=======
 			printk(KERN_ERR "SELinux : inode->i_security is not initialized. not fixed.\n"); 
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 		}
 	}
 // ] SEC_SELINUX_PORTING_COMMON
@@ -4101,6 +4112,11 @@ static int sock_has_perm(struct task_struct *task, struct sock *sk, u32 perms)
 	struct lsm_network_audit net = {0,};
 	u32 tsid = task_sid(task);
 
+<<<<<<< HEAD
+	if (!sksec)
+		return -EFAULT;
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 	if (sksec->sid == SECINITSID_KERNEL)
 		return 0;
 
@@ -4191,10 +4207,24 @@ static int selinux_socket_bind(struct socket *sock, struct sockaddr *address, in
 		u32 sid, node_perm;
 
 		if (family == PF_INET) {
+<<<<<<< HEAD
+			if (addrlen < sizeof(struct sockaddr_in)) {
+				err = -EINVAL;
+				goto out;
+			}
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 			addr4 = (struct sockaddr_in *)address;
 			snum = ntohs(addr4->sin_port);
 			addrp = (char *)&addr4->sin_addr.s_addr;
 		} else {
+<<<<<<< HEAD
+			if (addrlen < SIN6_LEN_RFC2133) {
+				err = -EINVAL;
+				goto out;
+			}
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 			addr6 = (struct sockaddr_in6 *)address;
 			snum = ntohs(addr6->sin6_port);
 			addrp = (char *)&addr6->sin6_addr.s6_addr;
@@ -5732,7 +5762,11 @@ static int selinux_setprocattr(struct task_struct *p,
 		return error;
 
 	/* Obtain a SID for the context, if one was specified. */
+<<<<<<< HEAD
+	if (size && str[0] && str[0] != '\n') {
+=======
 	if (size && str[1] && str[1] != '\n') {
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 		if (str[size-1] == '\n') {
 			str[size-1] = 0;
 			size--;

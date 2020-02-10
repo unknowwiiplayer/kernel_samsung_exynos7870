@@ -1046,6 +1046,17 @@ static noinline int avc_denied(u32 ssid, u32 tsid,
 	}
 #endif
 
+<<<<<<< HEAD
+
+#if defined(CONFIG_SECURITY_SELINUX_ALWAYS_ENFORCE)
+	if (!(avd->flags & AVD_FLAGS_PERMISSIVE))
+		return -EACCES;
+#elif !defined(CONFIG_SECURITY_SELINUX_NEVER_ENFORCE)
+	if (selinux_enforcing && !(avd->flags & AVD_FLAGS_PERMISSIVE))
+		return -EACCES;
+#endif
+
+=======
 #ifdef CONFIG_ALWAYS_ENFORCE
 	if (!(avd->flags & AVD_FLAGS_PERMISSIVE))
 #else
@@ -1053,6 +1064,7 @@ static noinline int avc_denied(u32 ssid, u32 tsid,
 #endif
 // ] SEC_SELINUX_PORTING_COMMON
 		return -EACCES;
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 
 	avc_update_node(AVC_CALLBACK_GRANT, requested, driver, xperm, ssid,
 				tsid, tclass, avd->seqno, NULL, flags);

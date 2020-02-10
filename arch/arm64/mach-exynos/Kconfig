@@ -11,6 +11,25 @@ if ARCH_EXYNOS
 
 menu "SAMSUNG EXYNOS SoCs Support"
 
+<<<<<<< HEAD
+choice
+	prompt "Exynos device target"
+	default MACH_EXYNOS7880_NONE
+
+config MACH_EXYNOS7870_NONE
+	bool "None"
+
+config MACH_EXYNOS7870_GTANOTEXLWIFI_KOR_OPEN
+	bool "Galaxy Tab A 10.1 With S-Pen (2016) Wifi (SM-P580)"
+	select EXYNOS_DTBTOOL
+
+endchoice
+
+endmenu
+
+endif
+
+=======
 config SKIP_HW_BREAKPOINT
 	bool "support skip hw breakpoint"
 	default n
@@ -29,3 +48,4 @@ config SAMSUNG_PRODUCT_SHIP
 endmenu
 
 endif
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc

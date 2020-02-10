@@ -320,6 +320,19 @@ _dtbinst_pre_:
 %.dtb_dtbinst_: $(obj)/%.dtb _dtbinst_pre_
 	$(call cmd,dtb_install,$(INSTALL_DTBS_PATH))
 
+<<<<<<< HEAD
+# dtbtool (Exynos)
+# ---------------------------------------------------------------------------
+
+quiet_cmd_dtbtool_exynos = DTBTOOL $@
+cmd_dtbtool_exynos = $(objtree)/scripts/dtbtool_exynos/dtbtool \
+		--pagesize $(CONFIG_EXYNOS_DTBH_PAGE_SIZE) \
+		--platform $(CONFIG_EXYNOS_DTBH_PLATFORM_CODE) \
+		--subtype $(CONFIG_EXYNOS_DTBH_SUBTYPE_CODE) \
+		-o $@ $(sort $(filter-out FORCE,$^))
+
+=======
+>>>>>>> d3008ee67f4ddaa3c221bd2e34945109f52b52bc
 # cat
 # ---------------------------------------------------------------------------
 # Concatentate multiple files together
